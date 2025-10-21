@@ -1,63 +1,67 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #aec6cf;
+    background-color: #aec6cf; /* Light blue background as in image */
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    margin: 0;
+    margin: 0; /* নিশ্চিত করুন বডিতে কোনো ডিফল্ট মার্জিন নেই */
     color: #333;
-    overflow-x: hidden;
+    overflow-x: hidden; /* অনুভূমিক স্ক্রলিং প্রতিরোধ করতে */
 }
 .quiz-container {
-    background-color: #f1f5f7;
+    background-color: #f1f5f7; /* Light blue background as in image */
     padding: 30px;
     border-radius: 15px;
-    box-shadow: 0 0 0 5px #f7f8f8;
+    box-shadow: 0 0 0 5px #f7f8f8; /* Blue dotted border effect */
     border-top: 5px dotted #f8f9f8;
     border-bottom: 5px dotted #f4f6f7;
     width: 95%;
-    max-width: 800px;
+    max-width: 800px; /* কুইজ কন্টেইনারের সর্বোচ্চ প্রস্থ বাড়ানো হয়েছে */
     text-align: center;
     box-sizing: border-box;
     position: relative;
 }
 
-/* Screens */
+/* সকল স্ক্রিন প্রাথমিকভাবে লুকানো থাকবে */
 .name-input-screen, .start-screen, .quiz-screen, .result-screen {
     display: none;
-    background-color: #f2f2f3;
+    background-color: #f2f2f3; /* Keep background consistent */
     border-radius: 10px;
     padding: 20px;
     position: relative;
 }
+
+/* শুধুমাত্র active ক্লাস থাকা স্ক্রিন দৃশ্যমান হবে */
 .name-input-screen.active, .start-screen.active, .quiz-screen.active, .result-screen.active {
     display: block;
 }
 
-/* Logo */
+/* নতুন লোগো স্টাইল */
 .logo-container-top-right {
     position: absolute;
     bottom: 10px;
     right: 10px;
-    width: 60px;
+    width: 60px; /* লোগোর আকার কমানো হয়েছে */
     height: 60px;
     z-index: 10;
 }
+
 .outer-circle {
     width: 100%;
     height: 100%;
-    background-color: #a7f1dc;
+    background-color: #a7f1dc; /* হালকা সবুজ রঙ */
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
 .inner-circle {
     width: 85%;
     height: 85%;
-    background-color: #588699;
+    background-color: #588699; /* গাঢ় ধূসর রঙ */
     border-radius: 50%;
     display: flex;
     flex-direction: column;
@@ -65,12 +69,14 @@ body {
     align-items: center;
     position: relative;
 }
+
 .logo-text {
     color: #fff;
     font-weight: bold;
     text-align: center;
     line-height: 1;
 }
+
 .logo-text span:first-child { font-size: 0.7em; }
 .logo-text span:last-child { font-size: 0.5em; }
 
@@ -214,6 +220,8 @@ h2 {
     position: relative;
     z-index: 5;
 }
+
+/* --- এই অংশটি পরিবর্তন করা হয়েছে --- */
 .question-text-box {
     background-color: #ffffff;
     border-radius: 8px;
@@ -221,9 +229,6 @@ h2 {
     margin: 0 auto 30px auto;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
     min-height: 140px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     font-size: 1.8em;
     font-weight: 600;
     color: #333;
@@ -232,7 +237,12 @@ h2 {
     width: 100%;
     box-sizing: border-box;
     position: relative;
+    /* 'display: flex' সরিয়ে 'display: grid' ব্যবহার করা হয়েছে */
+    display: grid;
+    place-items: center; /* লেখাটিকে পুরোপুরি মাঝখানে আনার জন্য */
 }
+/* --- পরিবর্তন শেষ --- */
+
 .options-container {
     display: flex;
     flex-direction: column;
@@ -468,4 +478,42 @@ h2 {
 .option.active { animation: slideFromLeft 0.5s ease-out forwards; }
 
 /* Responsive adjustments */
-/* ... (বাকি media query গুলি আগের মতোই থাকবে) ... */
+@media (max-width: 768px) {
+    .quiz-container {
+        padding: 15px;
+        width: 100%;
+        max-width: 100%;
+        height: 100vh;
+        border-radius: 0;
+        box-shadow: none;
+        border: none;
+    }
+    .start-screen h1, .result-screen h2 {
+        font-size: 2.2em;
+    }
+    .question-text-box {
+        font-size: 1.4em;
+        min-height: 120px;
+    }
+    .option {
+        font-size: 1.1em;
+        padding: 12px 15px;
+    }
+}
+
+@media (max-width: 600px) {
+    .controls {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        margin-top: 15px;
+    }
+    .navigation-button {
+        width: 80%;
+        max-width: 280px;
+        font-size: 1.05em;
+    }
+     .question-text-box {
+        font-size: 1.2em;
+    }
+}
