@@ -211,11 +211,6 @@ const questions = [
     }
 ];
 
-// --- এই ফাইলের বাকি অংশ অপরিবর্তিত থাকবে ---
-// The rest of the script is the same as the previous correct version.
-// For brevity, only the changed part is shown above, but you should replace the entire file content.
-// The corrected showExplanation function is below.
-
 let currentQuestionIndex = 0;
 let score = 0;
 let correctCount = 0;
@@ -355,7 +350,6 @@ function loadQuestion() {
         }, index * 100);
     });
 
-    // Button Visibility
     prevButton.style.display = currentQuestionIndex > 0 ? 'inline-block' : 'none';
     showAnswerButton.style.display = 'inline-block';
 
@@ -472,16 +466,11 @@ function handleSubmitQuiz() {
     displayRankings();
 }
 
-/**
- * FINAL FIX: This function is updated to be more robust.
- * It waits for the browser to render the text before calling MathJax.
- */
 function showExplanation() {
     const currentQuestion = questions[currentQuestionIndex];
     explanationText.innerHTML = currentQuestion.explanation; 
     explanationModal.style.display = 'block';
 
-    // Use a short timeout to ensure the DOM is updated before MathJax runs
     setTimeout(() => {
         if (window.MathJax && window.MathJax.typesetPromise) {
             window.MathJax.typesetPromise([explanationText])
